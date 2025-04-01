@@ -116,8 +116,11 @@ fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # NVIDIA drivers
+# X11 and graphics stack
+pacman -Sy --noconfirm xorg-server xorg-apps xorg-xinit mesa
+
+# NVIDIA proprietary drivers
 pacman -Sy --noconfirm nvidia nvidia-utils nvidia-settings
 nvidia-xconfig
 echo "nvidia" >> /etc/modules-load.d/nvidia.conf
-echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia-drm.conf
 EOF
