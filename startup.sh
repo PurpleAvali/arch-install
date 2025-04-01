@@ -15,7 +15,7 @@ echo "Available disks:"
 lsblk -d -o NAME,SIZE,MODEL,TYPE | grep disk
 read -rp "Enter disk to partition (e.g., sda, nvme0n1): " DISK
 DEVICE="/dev/$DISK"
-if ! lsblk -dno NAME,TYPE | grep -q "^$DISK disk$"; then
+if [[ ! -b "/dev/$DISK" ]]; then
     echo "Invalid disk: $DISK"
     exit 1
 fi
